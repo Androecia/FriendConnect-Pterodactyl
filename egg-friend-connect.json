@@ -1,0 +1,31 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-02-10T17:48:04-08:00",
+    "name": "FriendConnect",
+    "author": "loki@crazycoder.dev",
+    "description": "https:\/\/github.com\/Androecia\/FriendConnect\r\nThis egg automates a lot of stuff.\r\n\r\nYou will still need to configure it for your server and link your Microsoft Accounts.\r\nCustomize \/home\/container\/.env and \/home\/container\/test\/index.js",
+    "features": null,
+    "docker_images": {
+        "docker.io\/rotterseth\/friendconnect:node18_egg": "docker.io\/rotterseth\/friendconnect:node18_egg"
+    },
+    "file_denylist": [],
+    "startup": "npm run test 2>&1 | sed -E '\/^\\[FriendConnect\\s*\\] Server Advertisement Error\\s*$\/{N; s\/(.*)\/\\o033[34m[FALSE ALARM] \\o033[0m\\o033[33mThe following error message is expected and is safe to ignore:\\n\\o033[0m\/}'",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"\"\r\n}",
+        "logs": "{}",
+        "stop": "^^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n#\r\n# Server Files: \/mnt\/server\r\nmkdir -p \/mnt\/server\/\r\ncd \/mnt\/\r\nshopt -s dotglob && cp -r FriendConnect\/* \/mnt\/server",
+            "container": "docker.io\/rotterseth\/friendconnect:node18_yolk",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": []
+}
