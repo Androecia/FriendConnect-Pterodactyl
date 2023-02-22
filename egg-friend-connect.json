@@ -27,5 +27,226 @@
             "entrypoint": "bash"
         }
     },
-    "variables": []
+    "variables":   [
+        {
+            "name": "Accounts",
+            "description": "The emails separated by a comma of the accounts you want to use.",
+            "env_variable": "ACCOUNTS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Account Limit",
+            "description": "The maximum number of accounts that can be used on with FriendConnect.",
+            "env_variable": "ACC_LIMIT",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "nullable|numeric",
+            "field_type": "text"
+        },
+        {
+            "name": "Host Name",
+            "description": "The name of the server",
+            "env_variable": "HOSTNAME",
+            "default_value": "FriendConnect",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:50",
+            "field_type": "text"
+        },
+        {
+            "name": "World Name",
+            "description": "The name of the world",
+            "env_variable": "WORLD_NAME",
+            "default_value": "Message of the Day: Hello World",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:50",
+            "field_type": "text"
+        },
+        {
+            "name": "Version",
+            "description": "The version of the server",
+            "env_variable": "VERSION",
+            "default_value": "1.19.60",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:50",
+            "field_type": "text"
+        },
+        {
+            "name": "Protocol",
+            "description": "The protocol of the server",
+            "env_variable": "PROTOCOL",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer",
+            "field_type": "text"
+        },
+        {
+            "name": "Connected Players",
+            "description": "The amount of players currently connected to the server",
+            "env_variable": "CONNECTED_PLAYERS",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Connected Players",
+            "description": "The max amount of players that can connect to the server",
+            "env_variable": "MAX_CONNECTED_PLAYERS",
+            "default_value": "100",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer",
+            "field_type": "text"
+        },
+        {
+            "name": "IP",
+            "description": "The ip of the server",
+            "env_variable": "IP",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:50",
+            "field_type": "text"
+        },
+        {
+            "name": "Port",
+            "description": "The port of the server",
+            "env_variable": "PORT",
+            "default_value": "19132",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer",
+            "field_type": "text"
+        },
+        {
+            "name": "Connection Type",
+            "description": "The connection type of the server",
+            "env_variable": "CONNECTION_TYPE",
+            "default_value": "online",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|max:50",
+            "field_type": "text"
+        },
+        {
+            "name": "Log",
+            "description": "If you want to see the console output set to true.",
+            "env_variable": "LOG",
+            "default_value": "false",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Joinability",
+            "description": "The joinability of the session, if this is changed only one account can be used to connect to the session.",
+            "env_variable": "JOINABILITY",
+            "default_value": "joinable_by_friends",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:50",
+            "field_type": "text"
+        },
+        {
+            "name": "Auto Friending",
+            "description": "Set this to true if you want to automatically add people who follow the accounts.",
+            "env_variable": "AUTO_FRIENDING",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Ping Server For Info",
+            "description": "If FriendConnect keeps erroring out due to a rakNet ping error you can set this to false.",
+            "env_variable": "PING_SERVER_FOR_INFO",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Constant World Name",
+            "description": "If you want to use a constant world name set this to true.",
+            "env_variable": "CONSTANT_WORLD_NAME",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Constant Host Name",
+            "description": "If you want to use a constant host name set this to true.",
+            "env_variable": "CONSTANT_HOST_NAME",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Constant Version",
+            "description": "If you want to use a constant version set this to true.",
+            "env_variable": "CONSTANT_VERSION",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Constant Protocol",
+            "description": "If you want to use a constant protocol set this to true.",
+            "env_variable": "CONSTANT_PROTOCOL",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Constant Connected Players",
+            "description": "If you want to use a constant connected players set this to true.",
+            "env_variable": "CONSTANT_CONNECTED_PLAYERS",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Constant Max Connected Players",
+            "description": "If you want to use a constant max connected players set this to true.",
+            "env_variable": "CONSTANT_MAX_CONNECTED_PLAYERS",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Use DotEnv",
+            "description": "DO NOT EDIT THIS",
+            "env_variable": "USE_DOTENV",
+            "default_value": "false",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|boolean",
+            "field_type": "text"
+        }
+    ]
 }
