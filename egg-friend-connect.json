@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-02-10T17:48:04-08:00",
+    "exported_at": "2023-02-22T14:54:48-08:00",
     "name": "FriendConnect",
     "author": "loki@crazycoder.dev",
     "description": "https:\/\/github.com\/Androecia\/FriendConnect\r\nThis egg automates a lot of stuff.\r\n\r\nYou will still need to configure it for your server and link your Microsoft Accounts.\r\nCustomize \/home\/container\/.env and \/home\/container\/test\/index.js",
@@ -27,7 +27,7 @@
             "entrypoint": "bash"
         }
     },
-    "variables":   [
+    "variables": [
         {
             "name": "Accounts",
             "description": "The emails separated by a comma of the accounts you want to use.",
@@ -240,7 +240,7 @@
         },
         {
             "name": "Use DotEnv",
-            "description": "DO NOT EDIT THIS",
+            "description": "If you want to use a dotenv file set this to true. If you want to use environment variables set this to false.",
             "env_variable": "USE_DOTENV",
             "default_value": "false",
             "user_viewable": false,
