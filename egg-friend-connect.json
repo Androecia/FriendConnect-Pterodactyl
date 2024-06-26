@@ -4,249 +4,28 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-02-22T14:54:48-08:00",
-    "name": "FriendConnect",
+    "exported_at": "2024-06-25T20:02:26-07:00",
+    "name": "Newer FriendConnect",
     "author": "loki@crazycoder.dev",
-    "description": "https:\/\/github.com\/Androecia\/FriendConnect\r\nThis egg automates a lot of stuff.\r\n\r\nYou will still need to configure it for your server and link your Microsoft Accounts.\r\nCustomize \/home\/container\/.env and \/home\/container\/test\/index.js",
+    "description": "Runs FriendConnect",
     "features": null,
     "docker_images": {
-        "docker.io\/rotterseth\/friendconnect:node18_egg": "docker.io\/rotterseth\/friendconnect:node18_egg"
+        "Nodejs 18": "ghcr.io\/parkervcp\/yolks:nodejs_18"
     },
     "file_denylist": [],
-    "startup": "npm run test 2>&1 | sed -E '\/^\\[FriendConnect\\s*\\] Server Advertisement Error\\s*$\/{N; s\/(.*)\/\\o033[34m[FALSE ALARM] \\o033[0m\\o033[33mThe following error message is expected and is safe to ignore:\\n\\o033[0m\/}'",
+    "startup": "source .env; node --es-module-specifier-resolution=node --experimental-fetch index.js",
     "config": {
         "files": "{}",
-        "startup": "{\r\n    \"done\": \"\"\r\n}",
+        "startup": "{\r\n    \"done\": [\r\n        \"ExperimentalWarning: The Node.js specifier resolution flag is experimental. It could change or be removed at any time.\"\r\n    ]\r\n}",
         "logs": "{}",
-        "stop": "^^C"
+        "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n#\r\n# Server Files: \/mnt\/server\r\nmkdir -p \/mnt\/server\/\r\ncd \/mnt\/\r\nshopt -s dotglob && cp -r FriendConnect\/* \/mnt\/server",
-            "container": "docker.io\/rotterseth\/friendconnect:node18_yolk",
+            "script": "#!\/bin\/bash\r\n# FriendConnect Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\nmkdir -p \/mnt\/server\r\napt update\r\napt install -y git curl jq file unzip make gcc g++ python python-dev libtool cmake\r\n# Set up FriendConnect\r\ngit clone https:\/\/github.com\/GraftMC\/FriendConnect\r\nshopt -s dotglob\r\nmv FriendConnect\/* \/mnt\/server\r\nshopt -u dotglob\r\ncd \/mnt\/server\r\nmv test\/index.js .\r\nrm -rf test\r\n# Fix bad import\r\nsed -i 's|import { Session } from \"..\/dist\/index.js\";|import { Session } from \"friend-connect\";|' index.js\r\n\r\n# Install dependencies\r\nnpm install\r\necho -e \"install complete\"\r\nexit 0",
+            "container": "node:18-bullseye-slim",
             "entrypoint": "bash"
         }
     },
-    "variables": [
-        {
-            "name": "Accounts",
-            "description": "The emails separated by a comma of the accounts you want to use.",
-            "env_variable": "ACCOUNTS",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Account Limit",
-            "description": "The maximum number of accounts that can be used on with FriendConnect.",
-            "env_variable": "ACC_LIMIT",
-            "default_value": "1",
-            "user_viewable": true,
-            "user_editable": false,
-            "rules": "nullable|numeric",
-            "field_type": "text"
-        },
-        {
-            "name": "Host Name",
-            "description": "The name of the server",
-            "env_variable": "HOSTNAME",
-            "default_value": "FriendConnect",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:50",
-            "field_type": "text"
-        },
-        {
-            "name": "World Name",
-            "description": "The name of the world",
-            "env_variable": "WORLD_NAME",
-            "default_value": "Message of the Day: Hello World",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:50",
-            "field_type": "text"
-        },
-        {
-            "name": "Version",
-            "description": "The version of the server",
-            "env_variable": "VERSION",
-            "default_value": "1.19.60",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:50",
-            "field_type": "text"
-        },
-        {
-            "name": "Protocol",
-            "description": "The protocol of the server",
-            "env_variable": "PROTOCOL",
-            "default_value": "0",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|integer",
-            "field_type": "text"
-        },
-        {
-            "name": "Connected Players",
-            "description": "The amount of players currently connected to the server",
-            "env_variable": "CONNECTED_PLAYERS",
-            "default_value": "0",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|integer",
-            "field_type": "text"
-        },
-        {
-            "name": "Max Connected Players",
-            "description": "The max amount of players that can connect to the server",
-            "env_variable": "MAX_CONNECTED_PLAYERS",
-            "default_value": "100",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|integer",
-            "field_type": "text"
-        },
-        {
-            "name": "IP",
-            "description": "The ip of the server",
-            "env_variable": "IP",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:50",
-            "field_type": "text"
-        },
-        {
-            "name": "Port",
-            "description": "The port of the server",
-            "env_variable": "PORT",
-            "default_value": "19132",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|integer",
-            "field_type": "text"
-        },
-        {
-            "name": "Connection Type",
-            "description": "The connection type of the server",
-            "env_variable": "CONNECTION_TYPE",
-            "default_value": "online",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|max:50",
-            "field_type": "text"
-        },
-        {
-            "name": "Log",
-            "description": "If you want to see the console output set to true.",
-            "env_variable": "LOG",
-            "default_value": "false",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Joinability",
-            "description": "The joinability of the session, if this is changed only one account can be used to connect to the session.",
-            "env_variable": "JOINABILITY",
-            "default_value": "joinable_by_friends",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:50",
-            "field_type": "text"
-        },
-        {
-            "name": "Auto Friending",
-            "description": "Set this to true if you want to automatically add people who follow the accounts.",
-            "env_variable": "AUTO_FRIENDING",
-            "default_value": "false",
-            "user_viewable": true,
-            "user_editable": false,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Ping Server For Info",
-            "description": "If FriendConnect keeps erroring out due to a rakNet ping error you can set this to false.",
-            "env_variable": "PING_SERVER_FOR_INFO",
-            "default_value": "true",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Constant World Name",
-            "description": "If you want to use a constant world name set this to true.",
-            "env_variable": "CONSTANT_WORLD_NAME",
-            "default_value": "false",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Constant Host Name",
-            "description": "If you want to use a constant host name set this to true.",
-            "env_variable": "CONSTANT_HOST_NAME",
-            "default_value": "false",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Constant Version",
-            "description": "If you want to use a constant version set this to true.",
-            "env_variable": "CONSTANT_VERSION",
-            "default_value": "false",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Constant Protocol",
-            "description": "If you want to use a constant protocol set this to true.",
-            "env_variable": "CONSTANT_PROTOCOL",
-            "default_value": "false",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Constant Connected Players",
-            "description": "If you want to use a constant connected players set this to true.",
-            "env_variable": "CONSTANT_CONNECTED_PLAYERS",
-            "default_value": "false",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Constant Max Connected Players",
-            "description": "If you want to use a constant max connected players set this to true.",
-            "env_variable": "CONSTANT_MAX_CONNECTED_PLAYERS",
-            "default_value": "false",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Use DotEnv",
-            "description": "If you want to use a dotenv file set this to true. If you want to use environment variables set this to false.",
-            "env_variable": "USE_DOTENV",
-            "default_value": "false",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string",
-            "field_type": "text"
-        }
-    ]
+    "variables": []
 }
