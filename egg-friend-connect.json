@@ -4,8 +4,8 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-25T20:02:26-07:00",
-    "name": "Newer FriendConnect",
+    "exported_at": "2024-07-07T01:08:07-07:00",
+    "name": "FriendConnect",
     "author": "loki@crazycoder.dev",
     "description": "Runs FriendConnect",
     "features": null,
@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# FriendConnect Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\nmkdir -p \/mnt\/server\r\napt update\r\napt install -y git curl jq file unzip make gcc g++ python python-dev libtool cmake\r\n# Set up FriendConnect\r\ngit clone https:\/\/github.com\/GraftMC\/FriendConnect\r\nshopt -s dotglob\r\nmv FriendConnect\/* \/mnt\/server\r\nshopt -u dotglob\r\ncd \/mnt\/server\r\nmv test\/index.js .\r\nrm -rf test\r\n# Fix bad import\r\nsed -i 's|import { Session } from \"..\/dist\/index.js\";|import { Session } from \"friend-connect\";|' index.js\r\n\r\n# Install dependencies\r\nnpm install\r\necho -e \"install complete\"\r\nexit 0",
+            "script": "#!\/bin\/bash\r\n# FriendConnect Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\nmkdir -p \/mnt\/server\r\napt update\r\napt install -y git curl jq file unzip make gcc g++ python python-dev libtool cmake\r\n# Set up FriendConnect\r\ngit clone https:\/\/github.com\/GraftMC\/FriendConnect\r\nshopt -s dotglob\r\nmv FriendConnect\/* \/mnt\/server\r\nshopt -u dotglob\r\ncd \/mnt\/server\r\nmv test\/index.js .\r\n# Place quotes around any values in the .env file that have spaces\r\nsed -i '\/^[[:space:]]*#\/!s\/^\\([[:space:]]*[^[:space:]=]\\+=[[:space:]]*\\)\\([^\"][^\"]*\\)\\([[:space:]].*\\)$\/\\1\"\\2\\3\"\/' \/mnt\/server\/.env\r\nrm -rf test\r\n# Fix bad import\r\nsed -i 's|import { Session } from \"..\/dist\/index.js\";|import { Session } from \"friend-connect\";|' index.js\r\n# Install dependencies\r\nnpm install\r\necho -e \"install complete\"\r\nexit 0",
             "container": "node:18-bullseye-slim",
             "entrypoint": "bash"
         }
