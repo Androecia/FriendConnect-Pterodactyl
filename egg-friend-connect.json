@@ -4,16 +4,16 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-07-21T00:43:38-07:00",
+    "exported_at": "2024-08-23T21:40:26-07:00",
     "name": "FriendConnect",
     "author": "loki@crazycoder.dev",
     "description": "Runs FriendConnect",
     "features": null,
     "docker_images": {
-        "Nodejs 18": "ghcr.io\/parkervcp\/yolks:nodejs_18"
+        "Nodejs 20": "ghcr.io\/parkervcp\/yolks:nodejs_20"
     },
     "file_denylist": [],
-    "startup": "source .env; node --es-module-specifier-resolution=node --experimental-fetch index.js",
+    "startup": "source .env; npm start",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": [\r\n        \"ExperimentalWarning: The Node.js specifier resolution flag is experimental. It could change or be removed at any time.\"\r\n    ]\r\n}",
@@ -22,8 +22,8 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# FriendConnect Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\nmkdir -p \/mnt\/server\r\napt update\r\napt install -y git curl jq file unzip make gcc g++ python python-dev libtool cmake\r\n# Set up FriendConnect\r\ngit clone https:\/\/github.com\/GraftMC\/FriendConnect\r\nshopt -s dotglob\r\nmv FriendConnect\/* \/mnt\/server\r\nshopt -u dotglob\r\ncd \/mnt\/server\r\nmv test\/index.js .\r\n# Place quotes around any values in the .env file that have spaces\r\nsed -i '\/^[[:space:]]*#\/!s\/^\\([[:space:]]*[^[:space:]=]\\+=[[:space:]]*\\)\\([^\"][^\"]*\\)\\([[:space:]].*\\)$\/\\1\"\\2\\3\"\/' \/mnt\/server\/.env\r\nrm -rf test\r\n# Fix bad import\r\nsed -i 's|import { Session } from \"..\/dist\/index.js\";|import { Session } from \"friend-connect\";|' index.js\r\n# Install dependencies\r\nnpm install\r\necho -e \"install complete\"\r\nexit 0",
-            "container": "node:18-bullseye-slim",
+            "script": "#!\/bin\/bash\r\n# FriendConnect Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\nmkdir -p \/mnt\/server\r\napt update\r\napt install -y git curl jq file unzip make gcc g++ python python-dev libtool cmake\r\n# Set up FriendConnect\r\ngit clone https:\/\/github.com\/GraftMC\/FriendConnect\r\nshopt -s dotglob\r\nmv FriendConnect\/* \/mnt\/server\r\nshopt -u dotglob\r\ncd \/mnt\/server\r\nmv test\/index.js .\r\n# Point the import to the right place\r\nsed -i 's|import { Session } from \"\\.\\.\/dist\/index\\.js\";|import { Session } from \".\/dist\/index.js\";|' index.js\r\n# Place quotes around any values in the .env file that have spaces\r\nsed -i '\/^[[:space:]]*#\/!s\/^\\([[:space:]]*[^[:space:]=]\\+=[[:space:]]*\\)\\([^\"][^\"]*\\)\\([[:space:]].*\\)$\/\\1\"\\2\\3\"\/' \/mnt\/server\/.env\r\nrm -rf test\r\n# Install dependencies\r\nnpm install\r\n# Compile to typescript\r\nnpm run build\r\necho -e \"install complete\"\r\nexit 0",
+            "container": "node:20-bullseye-slim",
             "entrypoint": "bash"
         }
     },
