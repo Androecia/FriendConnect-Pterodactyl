@@ -5,9 +5,8 @@
 
 # WARNING
 
-**The software this image is for is deprecated,<br>
-and no longer works on the latest versions<br>
-of Minecraft Bedrock Edition.**
+**The software this image is for no longer works on the latest versions<br>
+of Minecraft Bedrock Edition. This notice will be updated when there is a working version out.**
 
 </td>
 <td><img src="https://www.pngall.com/wp-content/uploads/8/Red-Warning-PNG-Free-Download.png" width="100"></td>
