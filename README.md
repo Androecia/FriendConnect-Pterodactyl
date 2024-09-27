@@ -1,3 +1,19 @@
+<table>
+<tr>
+<td><img src="https://www.pngall.com/wp-content/uploads/8/Red-Warning-PNG-Free-Download.png" width="100"></td>
+<td align="center" bgcolor="#FFFF00">
+
+# WARNING
+
+**The software this image is for is deprecated,<br>
+and no longer works on the latest versions<br>
+of Minecraft Bedrock Edition.**
+
+</td>
+<td><img src="https://www.pngall.com/wp-content/uploads/8/Red-Warning-PNG-Free-Download.png" width="100"></td>
+</tr>
+</table>
+
 # FriendConnect-Pterodactyl
 A Pterodactyl egg for FriendConnect
 
