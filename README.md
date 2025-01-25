@@ -6,7 +6,7 @@
 # WARNING
 
 **The software this image is for no longer works on the latest versions<br>
-of Minecraft Bedrock Edition. This notice will be updated when there is a working version out.**
+of Minecraft Bedrock Edition. The author no longer maintains FriendConnect, so the container images are being archived.**
 
 </td>
 <td><img src="https://www.pngall.com/wp-content/uploads/8/Red-Warning-PNG-Free-Download.png" width="100"></td>
